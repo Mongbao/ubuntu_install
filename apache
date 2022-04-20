@@ -1,0 +1,72 @@
+ubuntu 20.04 apache install
+
+安裝apache
+sudo apt update
+sudo apt install apache2
+
+驗證apache是否在執行
+sudo systemctl status apache2
+
+開啟HTTP(80),HTTPS(443)
+sudo ufw allow 'Apache Full'
+驗證更改
+sudo ufw status
+
+驗證apache安裝
+http://IP OR DOMAIN/
+
+檔案上傳到
+/var/www/html
+配置/etc/apache2/site-enabled/000-default.conf
+
+將域名"example.com"設定網站
+
+建立根目錄資料夾
+sudo mkdir -p /var/www/example.com
+建立index.html
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Welcome to example.com</title>
+  </head>
+  <body>
+    <h1>Success! example.com home page!</h1>
+  </body>
+</html>
+
+避免許可權問題，修改域名根資料夾的使用者歸屬為apache使用者(ww-data)
+sudo chown -R www-data: /var/www/example.com
+
+建立虛擬主機配置
+
+建立檔案example.conf
+/etc/apache2/sites-available/example.conf
+
+<VirtualHost *:80>
+    ServerName example.com
+    ServerAlias www.example.com
+    ServerAdmin webmaster@example.com
+    DocumentRoot /var/www/example.com/public_html
+
+    <Directory /var/www/example.com/public_html>
+        Options -Indexes +FollowSymLinks
+        AllowOverride All
+    </Directory>
+
+    ErrorLog ${APACHE_LOG_DIR}/example.com-error.log
+    CustomLog ${APACHE_LOG_DIR}/example.com-access.log combined
+</VirtualHost>
+
+apache不會讀取/etc/apache2/site-available，除非被連結到/etc/apache2/sites-enabled
+想要啟用虛擬主機配置，使用a2ensite建立連結
+sudo a2ensite example.com
+
+測試配置檔案室否有語法錯誤
+sudo apachectl configtest
+沒有錯誤要顯示
+Syntax OK
+重啟Apache服務，使設定生效
+sudo systemctl restart apache2
+
+瀏覽器開啟http://example.com
