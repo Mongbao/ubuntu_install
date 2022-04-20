@@ -1,3 +1,35 @@
+raspberry pi使用腳本安裝
+wget https://dot.net/v1/dotnet-install.sh
+bash dotnet-install.sh -c Current
+
+path設定
+export PATH="$PATH:$HOME/.dotnet"
+
+dotnet-install.sh
+bao@ubuntu:~$ rm dotnet-install.sh 
+bao@ubuntu:~$ sudo snap install dotnet-runtime-60 --classic 
+error: snap "dotnet-runtime-60" is not available on stable for this architecture (arm64) but
+       exists on other architectures (amd64).
+bao@ubuntu:~$ sudo snap alias dotnet-runtime-60.dotnet dotnet
+snap "dotnet-runtime-60" is not installed
+bao@ubuntu:~$ wget https://dot.net/v1/dotnet-install.sh
+--2022-04-20 15:13:40--  https://dot.net/v1/dotnet-install.sh
+Resolving dot.net (dot.net)... 40.113.200.201, 13.77.161.179, 104.215.148.63, ...
+Connecting to dot.net (dot.net)|40.113.200.201|:443... connected.
+HTTP request sent, awaiting response... 301 Moved Permanently
+Location: https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh [following]
+--2022-04-20 15:13:41--  https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh
+Resolving dotnet.microsoft.com (dotnet.microsoft.com)... 13.107.213.39, 13.107.246.39, 2620:1ec:46::39, ...
+Connecting to dotnet.microsoft.com (dotnet.microsoft.com)|13.107.213.39|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Cookie coming from dotnet.microsoft.com attempted to set domain to dotnetwebsite.azurewebsites.net
+Cookie coming from dotnet.microsoft.com attempted to set domain to dotnetwebsite.azurewebsites.net
+Length: 55234 (54K) [application/x-sh]
+Saving to: ‘dotnet-install.sh’
+
+
+https://medium.com/@alperonline/how-to-install-dotnet-6-to-ubuntu-154a9010fa9d
+
 https://docs.microsoft.com/zh-tw/dotnet/core/install/linux-ubuntu#2004-
 
 https://tatmingstudio.blogspot.com/2017/07/aspnet-core-centos-7-apache.html
