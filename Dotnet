@@ -5,6 +5,60 @@ bash dotnet-install.sh -c Current
 path設定
 export PATH="$PATH:$HOME/.dotnet"
 
+初始化MVC專案
+dotnet new mvc
+
+檢查套件是否遺失並安裝
+dotnet restore
+
+#20220420 next 反向代理
+安裝Apache反向代理（Reverse-Proxy)
+sudo a2enmod proxy
+sudo a2enmod proxy-http
+sudo a2enmod proxy-ajp
+sudo a2enmod rewrite
+sudo a2enmod deflate
+sudo a2enmod headers
+sudo a2enmod proxy_balancer
+sudo a2enmod proxy-connect
+sudo anenmod proxy-html
+
+設定apache 000-default.conf(/etc/apache2/sites-available)
+<VirtualHost *:80>
+ProxyPreserveHost On
+ProxyPass / http://127.0.0.1:5000/
+ProxyPassReverse / http://127.0.0.1:5000/
+</VirtualHost>
+
+重新啟動apache server並啟動.net core
+sudo service apache2 restart
+donet run
+
+開機啟動＆背景執行
+/etc/systemd/system/kestrel-hellomvc.service
+[Unit]
+Description = https://blog.exfast.me/
+ 
+[Service]
+WorkingDirectory = /home/user/HelloWebApp/
+ExecStart = /usr/bin/dotnet run /home/user/HelloWebApp/HelloWebApp.dll
+Restart = always
+# Restart service after 10 seconds if dotnet service crashes
+RestartSec = 10
+SyslogIdentifier = dotnet-example
+User = user
+Environment = ASPNETCORE_ENVIRONMENT = Production 
+ 
+[Install]
+WantedBy = multi-user.target
+
+sudo systemctl stop kestrel-hellomvc
+sudo systemctl disable kestrel-hellomvc
+sudo systemctl enable kestrel-hellomvc
+sudo systemctl start kestrel-hellomvc
+sudo systemctl status kestrel-hellomvc
+
+
 dotnet-install.sh
 bao@ubuntu:~$ rm dotnet-install.sh 
 bao@ubuntu:~$ sudo snap install dotnet-runtime-60 --classic 
