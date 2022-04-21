@@ -4,6 +4,7 @@ bash dotnet-install.sh -c Current
 
 path設定
 export PATH="$PATH:$HOME/.dotnet"
+~/.profile 加入 PATH="$PATH:$HOME/.dotnet"
 
 初始化MVC專案
 dotnet new mvc
