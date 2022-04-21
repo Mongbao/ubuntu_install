@@ -12,6 +12,18 @@ dotnet new mvc
 檢查套件是否遺失並安裝
 dotnet restore
 
+修改Properties資料夾內的launchSettings.json檔案
+"applicationUrl": "https://localhost:7206;http://localhost:5290",
+改為
+"applicationUrl": "http://*:5000",
+
+在專案內運行
+dotnet run
+
+發布專案
+dotnet publish --configuration Release
+
+
 #20220420 next 反向代理
 安裝Apache反向代理（Reverse-Proxy)
 sudo a2enmod proxy
@@ -85,6 +97,6 @@ Saving to: ‘dotnet-install.sh’
 
 https://medium.com/@alperonline/how-to-install-dotnet-6-to-ubuntu-154a9010fa9d
 
-https://docs.microsoft.com/zh-tw/dotnet/core/install/linux-ubuntu#2004-
+https://exfast.me/2017/03/net-core-deployment-net-core-deployment-to-ubuntu-server-16-04/
 
 https://tatmingstudio.blogspot.com/2017/07/aspnet-core-centos-7-apache.html
