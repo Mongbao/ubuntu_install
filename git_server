@@ -1,0 +1,12 @@
+sudo apt install git
+
+配置git
+git config --global user.name "yourname"
+git config --global user.email "yourmail"
+
+顯示已設定的所有設定專案
+git config --list
+
+輸入的資訊儲存在git設定檔中，可以手動編輯該檔案
+vi ~/.gitconfig
+
