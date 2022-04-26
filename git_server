@@ -10,3 +10,39 @@ git config --list
 輸入的資訊儲存在git設定檔中，可以手動編輯該檔案
 vi ~/.gitconfig
 
+================================================
+新增專用群組
+sudo groupadd gitgroup
+
+新增gituser並指定成 gitgroup & 設定密碼
+sudo useradd -s /bin/bash -g gitgroup -m -d /home/gituser gituser
+sudo passwd gituser
+
+建立git repository資料位置
+sudo mkdir -p /opt /gitRepository
+
+變更擁有者
+sudo chown gituser:gitgroup -R /opt/gitRepository
+
+切換到gituser
+cd /opt/gitReopsitory
+mkdir project_name.git
+cd project_name.git
+git init --bare --shared
+
+建立一般使用者
+sudo useradd -s /bin/bash -g gitgroup -m -d /home/spike spike
+sudo passwd spike
+
+SSH連線方式
+git remote add spike ssh://gituser@192.168.0.0/opt/gitRepository/project_name.git
+
+產生ssh key
+ssh-keygen
+將公鑰內容複製到authorized_keys
+cat ~/.ssh/id_rsa.pub >~/.ssh/suthorized_keys
+私鑰自己存下後可以刪除
+mv ~/.ssh/id_rsa ~
+
+http://samchu.logdown.com/posts/777348-set-up-ubuntu-gitserver
+
