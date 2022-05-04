@@ -1,1 +1,70 @@
+sudo apt update
+sudo apt install mysql-server
+
+sudo service mysql status
+查看mysql狀態是否是Active
+
+設定安全性(Security)
+sudo mysql_secure_installation
+
+系統會詢問是否設定驗證密碼插件(VALIDATE PASSWORD PLUGIN)
+
+==================================================================
+Securing the MySQL server deployment.
+Connecting to MySQL using a blank password.
+VALIDATE PASSWORD PLUGIN can be used to test passwords
+and improve security. It checks the strength of password
+and allows the users to set only those passwords which are
+secure enough. Would you like to setup VALIDATE PASSWORD plugin?
+Press y|Y for Yes, any other key for No: 
+==================================================================
+不做設定直接按ENTER
+
+如果沒創建root密碼會需要創建一個
+==================================================================
+Please set the password for root here.
+
+New password: 
+
+Re-enter new password: 
+==================================================================
+
+==================================================================
+By default, a MySQL installation has an anonymous user,
+allowing anyone to log into MySQL without having to have
+a user account created for them. This is intended only for
+testing, and to make the installation go a bit smoother.
+You should remove them before moving into a production
+environment.
+
+Remove anonymous users? (Press y|Y for Yes, any other key for No) : 
+==================================================================
+是否刪除匿名用戶
+
+==================================================================
+Normally, root should only be allowed to connect from
+'localhost'. This ensures that someone cannot guess at
+the root password from the network.
+
+Disallow root login remotely? (Press y|Y for Yes, any other key for No) : 
+==================================================================
+是否禁止遠端root登入
+
+==================================================================
+By default, MySQL comes with a database named 'test' that
+anyone can access. This is also intended only for testing,
+and should be removed before moving into a production
+environment.
+
+Remove test database and access to it? (Press y|Y for Yes, any other key for No) : 
+==================================================================
+是否刪除測試資料庫
+
+==================================================================
+Reloading the privilege tables will ensure that all changes
+made so far will take effect immediately.
+
+Reload privilege tables now? (Press y|Y for Yes, any other key for No) : 
+==================================================================
+是否重新載入權限表
 
