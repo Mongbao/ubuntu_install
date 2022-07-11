@@ -5,3 +5,11 @@ sudo apt-get install alien
 sudo alien -c oracle-database-xe-21c-1.0-1.ol8.x86_64.rpm
 
 sudo dpkg -i oracle-database-xe-21c-1.0-1.ol8.x86_64.deb
+
+
+
+
+
+
+
+https://blog.csdn.net/chixiang3533/article/details/100799368
