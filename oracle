@@ -2,6 +2,6 @@ wget https://download.oracle.com/otn-pub/otn_software/db-express/oracle-database
 
 sudo apt-get install alien
 
-sudo alien oracle-database-xe-21c-1.0-1.ol8.x86_64.rpm
+sudo alien -c oracle-database-xe-21c-1.0-1.ol8.x86_64.rpm
 
-sudo dpkg -i xxx.deb
+sudo dpkg -i oracle-database-xe-21c-1.0-1.ol8.x86_64.deb
